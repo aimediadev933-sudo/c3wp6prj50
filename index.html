@@ -1,1 +1,1261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bridging the Digital Divide in Myanmar</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
+        :root {
+            --primary: #EC1550;
+            --secondary: #F69AB0;
+            --body: #F8F3F0;
+            --text: #1D1D1B;
+            --secondary-dark: #5E0023;
+            --white: #ffffff;
+            --light-gray: #f5f5f5;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text);
+            background-color: var(--body);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: var(--white);
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-weight: bold;
+            letter-spacing: -1px;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: var(--white);
+            text-decoration: none;
+            transition: opacity 0.3s ease;
+            font-weight: 500;
+        }
+
+        .nav-links a:hover {
+            opacity: 0.8;
+        }
+
+        .mobile-menu-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 4px;
+        }
+
+        .mobile-menu-toggle span {
+            width: 25px;
+            height: 3px;
+            background: var(--white);
+            transition: 0.3s;
+        }
+
+        .mobile-menu-toggle.active span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+
+        .mobile-menu-toggle.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .mobile-menu-toggle.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -6px);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: var(--white);
+            padding: 120px 0 80px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 320"><path fill="rgba(255,255,255,0.1)" d="M0,96L48,112C96,128,192,160,288,160C384,160,480,128,576,122.7C672,117,768,139,864,149.3C960,160,1056,160,1152,149.3L1200,139L1200,320L1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>') bottom center/cover no-repeat;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: var(--white);
+            color: var(--primary);
+            padding: 15px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+        }
+
+        /* Logos Section */
+        .logos {
+            background: var(--white);
+            padding: 60px 0;
+        }
+
+        .logos-grid {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 4rem;
+            flex-wrap: wrap;
+        }
+
+        .logo-item {
+            max-width: 200px;
+            opacity: 0.8;
+            transition: all 0.3s ease;
+            filter: grayscale(0.3);
+        }
+
+        .logo-item:hover {
+            opacity: 1;
+            transform: translateY(-5px);
+            filter: grayscale(0);
+        }
+
+        .logo-item img {
+            width: 100%;
+            height: auto;
+            max-height: 80px;
+            object-fit: contain;
+        }
+
+        /* Sections */
+        .section {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 3rem;
+            font-weight: 700;
+        }
+
+        /* About Section */
+        .about {
+            background: var(--white);
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .about-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        .highlight {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: var(--white);
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(236, 21, 80, 0.2);
+        }
+
+        /* Country Focus */
+        .country-focus {
+            background: var(--body);
+            text-align: center;
+        }
+
+        .country-card {
+            background: var(--white);
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            max-width: 600px;
+            margin: 0 auto;
+            border: 3px solid var(--primary);
+        }
+
+        .country-flag {
+            font-size: 5rem;
+            margin-bottom: 1rem;
+            animation: wave 2s ease-in-out infinite;
+        }
+
+        @keyframes wave {
+            0%, 100% { transform: rotate(0deg); }
+            25% { transform: rotate(-10deg); }
+            75% { transform: rotate(10deg); }
+        }
+
+        .country-card h3 {
+            font-size: 2rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        /* Stats Section */
+        .stats {
+            background: var(--white);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .stat-card {
+            background: var(--body);
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+            border-left: 4px solid var(--primary);
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: bold;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            font-size: 1.1rem;
+            color: var(--text);
+            font-weight: 500;
+        }
+
+        /* Training Programs */
+        .training {
+            background: var(--body);
+        }
+
+        .training-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .training-card {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+            border-left: 4px solid var(--primary);
+        }
+
+        .training-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(236, 21, 80, 0.15);
+        }
+
+        .training-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .training-card h3 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        /* Cisco Certifications */
+        .certifications {
+            background: var(--white);
+        }
+
+        .cert-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .cert-card {
+            background: var(--body);
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            border: 2px solid var(--secondary);
+        }
+
+        .cert-card:hover {
+            background: var(--primary);
+            color: var(--white);
+            transform: translateY(-5px);
+            border-color: var(--primary);
+        }
+
+        .cert-icon {
+            font-size: 3rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+            transition: color 0.3s ease;
+        }
+
+        .cert-card:hover .cert-icon {
+            color: var(--white);
+        }
+
+        /* Partners Section */
+        .partners {
+            background: var(--body);
+        }
+
+        .partners-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            text-align: center;
+        }
+
+        .partner-card {
+            padding: 1.5rem;
+            background: var(--white);
+            border-radius: 10px;
+            transition: all 0.3s ease;
+            box-shadow: 0 3px 15px rgba(0,0,0,0.1);
+        }
+
+        .partner-card:hover {
+            background: var(--primary);
+            color: var(--white);
+            transform: translateY(-3px);
+        }
+
+        .partner-card h4 {
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        /* Gender Stats */
+        .gender-stats {
+            background: var(--white);
+        }
+
+        .gender-wrapper {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .gender-chart {
+            text-align: center;
+            background: var(--body);
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+
+        .gender-info h3 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .gender-breakdown {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 1rem;
+        }
+
+        .gender-item {
+            text-align: center;
+        }
+
+        .gender-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: var(--primary);
+        }
+
+        .gender-label {
+            font-size: 1rem;
+            color: var(--text);
+        }
+
+        /* SDGs Section */
+        .sdgs {
+            background: var(--body);
+        }
+
+        .sdg-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .sdg-card {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .sdg-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .sdg-number {
+            display: inline-block;
+            width: 50px;
+            height: 50px;
+            background: var(--primary);
+            color: var(--white);
+            border-radius: 50%;
+            line-height: 50px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--secondary-dark);
+            color: var(--white);
+            text-align: center;
+            padding: 3rem 0;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 1rem;
+            color: var(--secondary);
+        }
+
+        .footer-section a {
+            color: var(--white);
+            text-decoration: none;
+            display: block;
+            margin-bottom: 0.5rem;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section a:hover {
+            color: var(--secondary);
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .container {
+                padding: 0 15px;
+            }
+            
+            .logos-grid {
+                gap: 3rem;
+            }
+            
+            .logo-item {
+                max-width: 180px;
+            }
+            
+            .gender-wrapper {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: var(--primary);
+                flex-direction: column;
+                padding: 1rem 0;
+                box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .mobile-menu-toggle {
+                display: flex;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .section {
+                padding: 60px 0;
+            }
+            
+            .training-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+            
+            .cert-grid {
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+                gap: 1.5rem;
+            }
+            
+            .stats-grid {
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+                gap: 1.5rem;
+            }
+            
+            .partners-grid {
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+                gap: 1rem;
+            }
+            
+            .sdg-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+            
+            .logos-grid {
+                gap: 2rem;
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .logo-item {
+                max-width: 150px;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+                text-align: center;
+            }
+            
+            .gender-breakdown {
+                flex-direction: column;
+                gap: 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+            }
+            
+            .section-title {
+                font-size: 1.8rem;
+            }
+            
+            .training-card, .sdg-card, .cert-card {
+                padding: 1.5rem;
+            }
+            
+            .cta-button {
+                padding: 12px 24px;
+                font-size: 0.9rem;
+            }
+            
+            .logo-item {
+                max-width: 120px;
+            }
+            
+            .logo-item img {
+                max-height: 60px;
+            }
+            
+            .stat-number {
+                font-size: 2.5rem;
+            }
+            
+            .country-flag {
+                font-size: 4rem;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in-up {
+            animation: fadeInUp 0.6s ease forwards;
+        }
+
+        /* Scroll animations */
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+
+        .animate-on-scroll.animated {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Pulse animation for CTA */
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(236, 21, 80, 0.4);
+            }
+            70% {
+                box-shadow: 0 0 0 10px rgba(236, 21, 80, 0);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(236, 21, 80, 0);
+            }
+        }
+
+        .cta-button {
+            animation: pulse 2s infinite;
+        }
+
+        /* Floating animation */
+        @keyframes floating {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .floating {
+            animation: floating 3s ease-in-out infinite;
+        }
+
+        /* Slide in animation */
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .slide-in-left {
+            animation: slideInLeft 0.8s ease forwards;
+        }
+
+        .slide-in-right {
+            animation: slideInRight 0.8s ease forwards;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <div class="logo">Myanmar ICT</div>
+            <ul class="nav-links">
+                <li><a href="#about">About</a></li>
+                <li><a href="#country">Myanmar</a></li>
+                <li><a href="#stats">Statistics</a></li>
+                <li><a href="#training">Training</a></li>
+                <li><a href="#certifications">Certifications</a></li>
+                <li><a href="#partners">Partners</a></li>
+                <li><a href="#impact">Impact</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <div class="mobile-menu-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content fade-in-up">
+                <h1>Bridging the Digital Divide</h1>
+                <p>Empowering Myanmar's digital future by training university instructors in essential ICT domains including IT fundamentals, networking (CCNA), and cybersecurity operations to strengthen the nation's digital education landscape</p>
+                <a href="#about" class="cta-button">Discover Our Impact</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="logos">
+        <div class="container">
+            <div class="logos-grid">
+                <div class="logo-item animate-on-scroll">
+                    <img src="images/logos/asia-connect-logo.png" alt="Asia Connect" />
+                </div>
+                <div class="logo-item animate-on-scroll">
+                    <img src="images/logos/eu-logo.png" alt="European Union" />
+                </div>
+                <div class="logo-item animate-on-scroll">
+                    <img src="images/logos/tein-logo.png" alt="TEIN Cooperation Center" />
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="section about">
+        <div class="container">
+            <h2 class="section-title animate-on-scroll">About Our Project</h2>
+            <div class="about-content">
+                <div class="about-text animate-on-scroll slide-in-left">
+                    <p>This project addresses Myanmar's growing digital divide by training university instructors from across the country in essential ICT domains such as IT fundamentals, networking (CCNA), and cybersecurity operations.</p>
+                    <p>These capacity-building efforts help institutions enhance their technical teaching resources, enable the delivery of certified ICT courses, and pave the way for more universities to join the Cisco Networking Academy framework with a strong focus on sustainable impact, gender inclusion, and national reach.</p>
+                </div>
+                <div class="highlight animate-on-scroll slide-in-right">
+                    <h3>Our Mission</h3>
+                    <p>To build national ICT capacity by training university instructors in key areas of networking and cybersecurity to bridge Myanmar's digital divide and strengthen digital education across the nation.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="country" class="section country-focus">
+        <div class="container">
+            <h2 class="section-title animate-on-scroll">Focus Country</h2>
+            <div class="country-card animate-on-scroll floating">
+                <div class="country-flag">🇲🇲</div>
+                <h3>Myanmar</h3>
+                <p>Strengthening digital education infrastructure and ICT capacity across universities nationwide to bridge the digital divide and empower the next generation of technology professionals.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="stats" class="section stats">
+        <div class="container">
+            <h2 class="section-title animate-on-scroll">Project Impact</h2>
+            <div class="stats-grid">
+                <div class="stat-card animate-on-scroll">
+                    <div class="stat-number">123</div>
+                    <div class="stat-label">Instructors Trained</div>
+                </div>
+                <div class="stat-card animate-on-scroll">
+                    <div class="stat-number">106</div>
+                    <div class="stat-label">Female Instructors</div>
+                </div>
+                <div class="stat-card animate-on-scroll">
+                    <div class="stat-number">17</div>
+                    <div class="stat-label">Male Instructors</div>
+                </div>
+                <div class="stat-card animate-on-scroll">
+                    <div class="stat-number">50</div>
+                    <div class="stat-label">IT Essentials Participants</div>
+                </div>
+                <div class="stat-card animate-on-scroll">
+                    <div class="stat-number">37</div>
+                    <div class="stat-label">CCNA Certified</div>
+                </div>
+                <div class="stat-card animate-on-scroll">
+                    <div class="stat-number">34</div>
+                    <div class="stat-label">CyberOps Trained</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="training" class="section training">
+        <div class="container">
+            <h2 class="section-title animate-on-scroll">Training Programs</h2>
+            <div class="training-grid">
+                <div class="training-card animate-on-scroll">
+                    <div class="training-icon">💻</div>
+                    <h3>IT Essentials Training</h3>
+                    <p>Foundational training covering PC hardware, operating systems, networking basics, and troubleshooting for 50 university instructors.</p>
+                </div>
+                <div class="training-card animate-on-scroll">
+                    <div class="training-icon">🌐</div>
+                    <h3>CCNA 1: Intro to Networks</h3>
+                    <p>Network fundamentals, IP addressing, TCP/IP protocols, and subnetting training for 30 instructors building essential network skills.</p>
+                </div>
+                <div class="training-card animate-on-scroll">
+                    <div class="training-icon">🔧</div>
+                    <h3>CCNA 2-4: Advanced Training</h3>
+                    <p>Routing & Switching, Scaling Networks, and WAN Technologies with 37 instructors receiving end-to-end Cisco certification.</p>
+                </div>
+                <div class="training-card animate-on-scroll">
+                    <div class="training-icon">🛡️</div>
+                    <h3>Cybersecurity Operations</h3>
+                    <p>Specialized course for 34 instructors focusing on cybersecurity monitoring, Linux/Windows tools, and threat response.</p>
+                </div>
+                <div class="training-card animate-on-scroll">
+                    <div class="training-icon">🤝</div>
+                    <h3>Knowledge Sharing</h3>
+                    <p>Internal knowledge-sharing events at home institutions to expand reach and support long-term institutional adoption.</p>
+                </div>
+                <div class="training-card animate-on-scroll">
+                    <div class="training-icon">🏛️</div>
+                    <h3>Institutional Development</h3>
+                    <p>Universities joining Cisco Networking Academy program, becoming official centers for ICT certification in Myanmar.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="certifications" class="section certifications">
+        <div class="container">
+            <h2 class="section-title animate-on-scroll">Cisco Certifications</h2>
+            <div class="cert-grid">
+                <div class="cert-card animate-on-scroll">
+                    <div class="cert-icon">🛡️</div>
+                    <h3>CyberOps</h3>
+                    <p>Cybersecurity Operations</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section gender-stats">
+        <div class="container">
+            <h2 class="section-title animate-on-scroll">Gender Inclusion</h2>
+            <div class="gender-wrapper">
+                <div class="gender-info animate-on-scroll slide-in-left">
+                    <h3>Promoting Gender Equality in ICT</h3>
+                    <p>Our project demonstrates exceptional gender inclusion with 86% female participation among trained instructors. This achievement highlights Myanmar's commitment to empowering women in technology education and leadership roles.</p>
+                    <p>While gender participation was remarkably high, we continue to support female instructors in advancing to leadership and decision-making positions within their institutions.</p>
+                </div>
+                <div class="gender-chart animate-on-scroll slide-in-right">
+                    <h3>Instructor Gender Distribution</h3>
+                    <div class="gender-breakdown">
+                        <div class="gender-item">
+                            <div class="gender-number">106</div>
+                            <div class="gender-label">Female</div>
+                        </div>
+                        <div class="gender-item">
+                            <div class="gender-number">17</div>
+                            <div class="gender-label">Male</div>
+                        </div>
+                    </div>
+                    <p style="margin-top: 1rem; color: var(--primary); font-weight: bold;">86% Female Participation</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="partners" class="section partners">
+        <div class="container">
+            <h2 class="section-title animate-on-scroll">Partner Organizations</h2>
+            <div class="partners-grid">
+                <div class="partner-card animate-on-scroll">
+                    <h4>University of Computer Studies</h4>
+                    <p>Yangon - Lead Institution</p>
+                </div>
+                <div class="partner-card animate-on-scroll">
+                    <h4>University of Malaya</h4>
+                    <p>Malaysia - International Partner</p>
+                </div>
+                <div class="partner-card animate-on-scroll">
+                    <h4>University of Computer Studies</h4>
+                    <p>Mandalay - Partner Institution</p>
+                </div>
+                <div class="partner-card animate-on-scroll">
+                    <h4>University of Information Technology</h4>
+                    <p>Yangon - Partner Institution</p>
+                </div>
+                <div class="partner-card animate-on-scroll">
+                    <h4>TEIN*CC</h4>
+                    <p>Trans-Eurasia Information Network</p>
+                </div>
+                <div class="partner-card animate-on-scroll">
+                    <h4>Asi@Connect</h4>
+                    <p>Asia-Europe Digital Connectivity</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="impact" class="section sdgs">
+        <div class="container">
+            <h2 class="section-title animate-on-scroll">Sustainable Development Goals</h2>
+            <div class="sdg-grid">
+                <div class="sdg-card animate-on-scroll">
+                    <div class="sdg-number">4</div>
+                    <h3>Quality Education</h3>
+                    <p>Ensuring inclusive and equitable quality education by building ICT capacity among university instructors nationwide.</p>
+                </div>
+                <div class="sdg-card animate-on-scroll">
+                    <div class="sdg-number">9</div>
+                    <h3>Industry, Innovation and Infrastructure</h3>
+                    <p>Building resilient digital infrastructure and promoting inclusive technological innovation through certified ICT training.</p>
+                </div>
+                <div class="sdg-card animate-on-scroll">
+                    <div class="sdg-number">10</div>
+                    <h3>Reduced Inequalities</h3>
+                    <p>Reducing digital inequalities by strengthening ICT education capacity across universities nationwide, with strong gender inclusion.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer id="contact">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Myanmar ICT Project</h3>
+                    <p>Bridging the Digital Divide in Myanmar</p>
+                    <p>Category: WP6 - 3rd Call</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <a href="#about">About</a>
+                    <a href="#country">Myanmar</a>
+                    <a href="#stats">Statistics</a>
+                    <a href="#training">Training</a>
+                    <a href="#certifications">Certifications</a>
+                    <a href="#partners">Partners</a>
+                    <a href="#impact">Impact</a>
+                </div>
+                <div class="footer-section">
+                    <h3>Key Achievements</h3>
+                    <p>123 Instructors Trained</p>
+                    <p>Multiple Cisco Networking Academies</p>
+                    <p>86% Female Participation</p>
+                    <p>mmREN Network Strengthened</p>
+                </div>
+            </div>
+            <hr style="border: 1px solid rgba(255,255,255,0.2); margin: 2rem 0;">
+            <p>&copy; 2025 Myanmar ICT Project. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
+        const navLinks = document.querySelector('.nav-links');
+
+        if (mobileMenuToggle) {
+            mobileMenuToggle.addEventListener('click', () => {
+                mobileMenuToggle.classList.toggle('active');
+                navLinks.classList.toggle('active');
+            });
+
+            // Close mobile menu when clicking on a link
+            document.querySelectorAll('.nav-links a').forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileMenuToggle.classList.remove('active');
+                    navLinks.classList.remove('active');
+                });
+            });
+        }
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Intersection Observer for scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animated');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all elements with animate-on-scroll class
+        document.querySelectorAll('.animate-on-scroll').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Header background change on scroll
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 100) {
+                header.style.background = 'rgba(236, 21, 80, 0.95)';
+                header.style.backdropFilter = 'blur(10px)';
+            } else {
+                header.style.background = 'linear-gradient(135deg, var(--primary), var(--secondary))';
+                header.style.backdropFilter = 'none';
+            }
+        });
+
+        // Stats counter animation
+        const animateCounters = () => {
+            const counters = document.querySelectorAll('.stat-number, .gender-number');
+            
+            counters.forEach(counter => {
+                const target = parseInt(counter.textContent);
+                const duration = 2000;
+                const step = target / (duration / 16);
+                let current = 0;
+                
+                const updateCounter = () => {
+                    current += step;
+                    if (current < target) {
+                        counter.textContent = Math.floor(current);
+                        requestAnimationFrame(updateCounter);
+                    } else {
+                        counter.textContent = target;
+                    }
+                };
+                
+                updateCounter();
+            });
+        };
+
+        // Trigger counter animation when stats section is visible
+        const statsObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    animateCounters();
+                    statsObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.5 });
+
+        const statsSection = document.querySelector('.stats');
+        if (statsSection) {
+            statsObserver.observe(statsSection);
+        }
+
+        // Gender stats animation
+        const genderStatsObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    // Animate gender numbers
+                    const genderNumbers = entry.target.querySelectorAll('.gender-number');
+                    genderNumbers.forEach(number => {
+                        const target = parseInt(number.textContent);
+                        let current = 0;
+                        const increment = target / 60;
+                        
+                        const timer = setInterval(() => {
+                            current += increment;
+                            if (current >= target) {
+                                number.textContent = target;
+                                clearInterval(timer);
+                            } else {
+                                number.textContent = Math.floor(current);
+                            }
+                        }, 30);
+                    });
+                    
+                    genderStatsObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.5 });
+
+        const genderSection = document.querySelector('.gender-stats');
+        if (genderSection) {
+            genderStatsObserver.observe(genderSection);
+        }
+
+        // Add staggered animation delays to cards
+        const addStaggeredAnimations = () => {
+            const cardGroups = [
+                '.training-grid .training-card',
+                '.cert-grid .cert-card',
+                '.partners-grid .partner-card',
+                '.stats-grid .stat-card'
+            ];
+
+            cardGroups.forEach(selector => {
+                const cards = document.querySelectorAll(selector);
+                cards.forEach((card, index) => {
+                    card.style.animationDelay = `${index * 0.1}s`;
+                });
+            });
+        };
+
+        // Initialize staggered animations when page loads
+        window.addEventListener('load', addStaggeredAnimations);
+
+        // Add parallax effect to hero section
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const hero = document.querySelector('.hero');
+            const rate = scrolled * -0.5;
+            
+            if (hero) {
+                hero.style.transform = `translateY(${rate}px)`;
+            }
+        });
+
+        // Add typing effect to hero title
+        const typeWriter = (element, text, delay = 100) => {
+            element.textContent = '';
+            let i = 0;
+            
+            const timer = setInterval(() => {
+                if (i < text.length) {
+                    element.textContent += text.charAt(i);
+                    i++;
+                } else {
+                    clearInterval(timer);
+                }
+            }, delay);
+        };
+
+        // Initialize typing effect
+        window.addEventListener('load', () => {
+            const heroTitle = document.querySelector('.hero h1');
+            if (heroTitle) {
+                const originalText = heroTitle.textContent;
+                setTimeout(() => {
+                    typeWriter(heroTitle, originalText, 100);
+                }, 500);
+            }
+        });
+    </script>
+</body>
+</html> class="cert-icon">⚙️</div>
+                    <h3>IT Essentials</h3>
+                    <p>Foundational ICT Skills</p>
+                </div>
+                <div class="cert-card animate-on-scroll">
+                    <div class="cert-icon">🌐</div>
+                    <h3>CCNA 1</h3>
+                    <p>Introduction to Networks</p>
+                </div>
+                <div class="cert-card animate-on-scroll">
+                    <div class="cert-icon">🔀</div>
+                    <h3>CCNA 2</h3>
+                    <p>Routing & Switching</p>
+                </div>
+                <div class="cert-card animate-on-scroll">
+                    <div class="cert-icon">📈</div>
+                    <h3>CCNA 3</h3>
+                    <p>Scaling Networks</p>
+                </div>
+                <div class="cert-card animate-on-scroll">
+                    <div class="cert-icon">🌍</div>
+                    <h3>CCNA 4</h3>
+                    <p>WAN Technologies</p>
+                </div>
+                <div class="cert-card animate-on-scroll">
+                    <div
